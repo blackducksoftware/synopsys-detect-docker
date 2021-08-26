@@ -16,4 +16,4 @@ RUN curl --silent -w "%{http_code}" -L -o /synopsys-detect.jar --create-dirs ${D
     && if [[ ! -f /synopsys-detect.jar ]]; then echo "Unable to download Detect 7.1.0 jar" && exit -1 ; fi
 
 # Define Docker Image entrypoint
-ENTRYPOINT ["java", "-jar", "/synopsys-detect.jar", "--detect.source.path=/source", "--detect.output.path=/output", "--detect.phone.home.passthrough.invoked.by.image=true"]
+ENTRYPOINT ["java", "-jar", "/synopsys-detect.jar", "--detect.source.path=/source", "--detect.output.path=/output", "--detect.phone.home.passthrough.invoked.by.image=true", "--detect.detector.buildless=true"]
