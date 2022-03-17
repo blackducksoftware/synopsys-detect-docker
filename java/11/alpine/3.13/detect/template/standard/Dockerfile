@@ -12,8 +12,7 @@ ENV BDS_JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 
 ARG DETECT_SOURCE=https://sig-repo.synopsys.com/bds-integrations-release/com/synopsys/integration/synopsys-detect/<detectVersion>/synopsys-detect-<detectVersion>.jar
 
-RUN curl --silent -w "%{http_code}" -L -o /synopsys-detect.jar --create-dirs ${DETECT_SOURCE} \
-    && if [[ ! -f /synopsys-detect.jar ]]; then echo "Unable to download Detect <detectVersion> jar" && exit -1 ; fi
+RUN if [ $(curl --silent -L -w '%{http_code}' -o /synopsys-detect.jar --create-dirs ${DETECT_SOURCE}) != "200" ]; then echo "Unable to download Detect <detectVersion> jar" && exit 1; fi
 
 # Define Docker Image entrypoint
 ENTRYPOINT ["java", "-jar", "/synopsys-detect.jar", "--detect.source.path=/source", "--detect.output.path=/output", "--detect.phone.home.passthrough.invoked.by.image=true"]
