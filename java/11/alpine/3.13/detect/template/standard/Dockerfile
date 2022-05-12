@@ -3,6 +3,9 @@ FROM alpine:3.13
 # Update, get bash
 RUN apk update && apk add bash && apk add curl
 
+# Required for standalone nuget inspector
+RUN apk add libstdc++ && apk add gcompat && apk add icu
+
 # Java
 RUN apk --no-cache add openjdk11-jre
 
