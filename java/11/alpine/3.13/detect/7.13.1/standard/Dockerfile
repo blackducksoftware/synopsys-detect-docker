@@ -3,9 +3,6 @@ FROM alpine:3.13
 # Update, get bash
 RUN apk update && apk add bash && apk add curl
 
-# Required for standalone nuget inspector
-RUN apk add libstdc++ && apk add gcompat && apk add icu
-
 # Java
 RUN apk --no-cache add openjdk11-jre
 
@@ -13,7 +10,7 @@ ENV BDS_JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 
 # Download Detect jar
 
-ARG DETECT_SOURCE=<detectsource>
+ARG DETECT_SOURCE=https://sig-repo.synopsys.com/artifactory/bds-integrations-release/com/synopsys/integration/synopsys-detect/7.13.1/synopsys-detect-7.13.1.jar
 
 RUN if [ $(curl --silent -L -w '%{http_code}' -o /synopsys-detect.jar --create-dirs ${DETECT_SOURCE}) != "200" ]; then echo "Unable to download Detect jar from ${DETECT_SOURCE}"; exit 1; fi
 
