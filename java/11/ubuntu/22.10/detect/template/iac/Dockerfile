@@ -20,7 +20,7 @@ ENV LC_ALL en_US.UTF-8
 
 ARG DETECT_SOURCE=<detectsource>
 
-RUN set -e; if [ $(curl --silent -L -w '%{http_code}' -o /synopsys-detect.jar --create-dirs ${DETECT_SOURCE}) != "200" ]; then echo "Unable to download Detect jar from ${DETECT_SOURCE}"; exit 1; fi
+RUN if [ $(curl --silent -L -w '%{http_code}' -o /synopsys-detect.jar --create-dirs ${DETECT_SOURCE}) != "200" ]; then echo "Unable to download Detect jar from ${DETECT_SOURCE}"; exit 1; fi
 
 # Define Docker Image entrypoint
 ENTRYPOINT ["java", "-jar", "/synopsys-detect.jar", "--detect.source.path=/source", "--detect.output.path=/output", "--detect.phone.home.passthrough.invoked.by.image=true"]
