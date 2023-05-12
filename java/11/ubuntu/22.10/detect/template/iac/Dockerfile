@@ -3,6 +3,8 @@ FROM ubuntu:22.10
 # Update
 RUN apt-get update
 
+RUN apt-get -y install curl
+
 # Java
 RUN apt-get -y install default-jre-headless
 ENV BDS_JAVA_HOME=/usr/lib/jvm/default-java
