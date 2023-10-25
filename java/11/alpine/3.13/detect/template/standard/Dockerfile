@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.18
 
 # Update, get bash
 RUN apk update && apk add bash && apk add curl
