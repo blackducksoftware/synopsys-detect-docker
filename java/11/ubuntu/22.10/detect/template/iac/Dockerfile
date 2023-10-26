@@ -3,7 +3,8 @@ FROM ubuntu:23.04
 # Update
 RUN apt-get update
 
-RUN apt-get -y install curl
+# Install wget
+RUN apt-get -y install wget
 
 # Java
 RUN apt-get -y install default-jre-headless
@@ -20,7 +21,7 @@ ENV LC_ALL en_US.UTF-8
 
 ARG DETECT_SOURCE=<detectsource>
 
-RUN if [ $(curl --silent -L -w '%{http_code}' -o /synopsys-detect.jar --create-dirs ${DETECT_SOURCE}) != "200" ]; then echo "Unable to download Detect jar from ${DETECT_SOURCE}"; exit 1; fi
+RUN wget -O /synopsys-detect.jar --server-response ${DETECT_SOURCE}
 
 # Define Docker Image entrypoint
 ENTRYPOINT ["java", "-jar", "/synopsys-detect.jar", "--detect.source.path=/source", "--detect.output.path=/output", "--detect.phone.home.passthrough.invoked.by.image=true"]
