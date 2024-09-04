@@ -21,7 +21,7 @@ ENV LC_ALL en_US.UTF-8
 
 ARG DETECT_SOURCE=<detectsource>
 
-RUN wget -O /synopsys-detect.jar --server-response ${DETECT_SOURCE}
+RUN wget -O /detect.jar --server-response ${DETECT_SOURCE}
 
 # Define Docker Image entrypoint
-ENTRYPOINT ["java", "-jar", "/synopsys-detect.jar", "--detect.source.path=/source", "--detect.output.path=/output", "--detect.phone.home.passthrough.invoked.by.image=true"]
+ENTRYPOINT ["java", "-jar", "/detect.jar", "--detect.source.path=/source", "--detect.output.path=/output", "--detect.phone.home.passthrough.invoked.by.image=true"]
