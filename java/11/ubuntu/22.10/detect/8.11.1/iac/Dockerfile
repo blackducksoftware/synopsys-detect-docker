@@ -19,7 +19,7 @@ ENV LC_ALL en_US.UTF-8
 
 # Download Detect jar
 
-ARG DETECT_SOURCE=https://sig-repo.synopsys.com/bds-integrations-release/com/synopsys/integration/synopsys-detect/8.11.1/synopsys-detect-8.11.1.jar
+ARG DETECT_SOURCE=https://repo.blackduck.com/bds-integrations-release/com/synopsys/integration/synopsys-detect/8.11.1/synopsys-detect-8.11.1.jar
 
 RUN wget -O /synopsys-detect.jar --server-response ${DETECT_SOURCE}
 

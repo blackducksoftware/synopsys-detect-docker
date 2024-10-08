@@ -10,7 +10,7 @@ ENV BDS_JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 
 # Download Detect jar
 
-ARG DETECT_SOURCE=https://sig-repo.synopsys.com/bds-integrations-release/com/synopsys/integration/synopsys-detect/7.3.0/synopsys-detect-7.3.0.jar
+ARG DETECT_SOURCE=https://repo.blackduck.com/bds-integrations-release/com/synopsys/integration/synopsys-detect/7.3.0/synopsys-detect-7.3.0.jar
 
 RUN curl --silent -w "%{http_code}" -L -o /synopsys-detect.jar --create-dirs ${DETECT_SOURCE} \
     && if [[ ! -f /synopsys-detect.jar ]]; then echo "Unable to download Detect 7.3.0 jar" && exit -1 ; fi

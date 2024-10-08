@@ -18,7 +18,7 @@ ENV LC_ALL en_US.UTF-8
 
 # Download Detect jar
 
-ARG DETECT_SOURCE=https://sig-repo.synopsys.com/artifactory/bds-integrations-release/com/synopsys/integration/synopsys-detect/9.0.0/synopsys-detect-9.0.0.jar
+ARG DETECT_SOURCE=https://repo.blackduck.com/artifactory/bds-integrations-release/com/synopsys/integration/synopsys-detect/9.0.0/synopsys-detect-9.0.0.jar
 
 RUN if [ $(curl --silent -L -w '%{http_code}' -o /synopsys-detect.jar --create-dirs ${DETECT_SOURCE}) != "200" ]; then echo "Unable to download Detect jar from ${DETECT_SOURCE}"; exit 1; fi
 
